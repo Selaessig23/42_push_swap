@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mstracke <mstracke@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mstracke <mstracke@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:20:19 by mstracke          #+#    #+#             */
-/*   Updated: 2024/04/17 18:09:44 by mstracke         ###   ########.fr       */
+/*   Updated: 2024/03/18 13:49:04 by mstracke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 
 #include "push_swap.h"
 
+void	testsorting(t_list **stack, char c);
+
 	//check some arguments are bigger than an integer and free the linked list
 int	intmaxcheck(t_list *stack_a, long long value)
 {
@@ -38,6 +40,19 @@ int	intmaxcheck(t_list *stack_a, long long value)
 	}
 	return (0);
 }
+/*
+	//check some arguments are bigger than an integer and free array of ints
+int	intmaxcheck(int *stack_a, long long value)
+{
+	if (value > INT_MAX || value < INT_MIN)
+	{
+		free(stack_a);
+		perror("Error: MAX or MIN INT");
+		return (1);
+	}
+	return (0);
+}
+*/
 
 	//use input arguments and create a linked list (used as stack_a)
 	//do not return 0 if error, better instead: exit 1?
@@ -46,7 +61,7 @@ static t_list	*create_stack_a(char **stack_char, size_t size)
 {
 	size_t	i;
 	t_list	*stack_a;
-
+	
 	stack_a = NULL;
 	if (input_errorcheck(stack_char) == 1)
 		return (0);
@@ -59,11 +74,48 @@ static t_list	*create_stack_a(char **stack_char, size_t size)
 			return (0);
 		}
 		ft_lstadd_back(&stack_a, ft_lstnew(ft_atoi(stack_char[i])));
+//		ft_printf("iterations: %i\n", stack_a->content);
+//		stack_a = stack_a->next;
+		i++;
+	}
+//	if (stack_a == NULL)
+//		return (0);
+//	ft_printf("je\n");
+//	testsorting(&stack_a, 'a');
+	ft_free(stack_char);
+	return (stack_a);
+}
+/*
+	//use input arguments and create an array of ints (used as stack_a)
+	//do not return 0 if error, better instead: exit 1?
+static int	*create_stacka(char **stack_char, size_t size)
+{
+	size_t	i;
+	int		*stack_a;
+
+	if (input_errorcheck(stack_char) == 1)
+		return (0);
+	stack_a = ft_calloc((size), sizeof(int));
+	if (!stack_a)
+	{
+		ft_free(stack_char);
+		return (0);
+	}
+	i = 0;
+	while (i < (size))
+	{
+		if (intmaxcheck(stack_a, (long long) ft_atoi(stack_char[i])) == 1)
+		{
+			ft_free(stack_char);
+			return (0);
+		}
+		stack_a[i] = ft_atoi(stack_char[i]);
 		i++;
 	}
 	ft_free(stack_char);
 	return (stack_a);
 }
+*/
 
 	//only for testing reasons
 	//free the nodes / linked lists
@@ -71,20 +123,42 @@ void	testsorting(t_list **stack, char c)
 {
 	t_list	*curr;
 	t_list	*temp;
-	int		i;
+	int	i;
 
 	curr = *stack;
 	i = 0;
+//	ft_printf("test11\n");
+//	ft_printf("test3: %i\n", stack->content);
+	//I have commented out the freed of temp, otherwise the last element would not be printed as it has been freed already
 	while (curr != NULL)
 	{
+//		ft_printf("test3A\n");
 		temp = curr;
 		ft_printf("stack_%c[%d]: $%d$\n", c, i, curr->content);
 		curr = curr->next;
 		free(temp);
 		i++;
 	}
+//	ft_printf("stack_%c[%d]: $%d$\n", c, i, curr->content);
 	stack = NULL;
 }
+/*
+	//to test push_swap working with an array of ints
+	//only for testing reasons
+void	testsorting(int *stack, int size, char c)
+{
+	int	i;
+
+	i = 0;
+	while (i < size)
+	{
+		ft_printf("stack_%c[%d]: $%d$\n", c, i, stack[i]);
+		i++;
+	}
+	free (stack);
+	stack = NULL;
+}
+*/
 
 /*
 void	push_3(int *stack_a, int *stack_b)
@@ -116,26 +190,6 @@ void	push_5(int *stack_a, int *stack_b)
 }
 */
 
-int	check_sorted(t_list *stack_a)
-{
-	t_list	*curr;
-
-	curr = stack_a->next;
-	while (stack_a->next != NULL && ((stack_a->content) < (curr->content)))
-	{
-		stack_a = stack_a->next;
-		curr = curr->next;
-	}
-	if (stack_a->next == NULL)
-	{
-//		perror("Already sorted: delete message and return "
-//		"(0) before closing poject");
-//		return (1);
-		return (0);
-	}
-	return (9);
-}
-
 //adapt function for final upload? 
 void	push_swap(t_list *stack_a)
 {
@@ -144,18 +198,9 @@ void	push_swap(t_list *stack_a)
 	stack_b = NULL;
 //	ft_printf("test 5a\n");
 //	stack_b = ft_calloc(1, sizeof(t_list));
-	while (check_sorted(stack_a) == 9)
-	{
-		stack_b = sort_median(&stack_a);
-		sort_compare_ab(&stack_a, &stack_b);
-		resort_to_stacka(&stack_a, &stack_b);
-	}
-//	if (check_sorted(stack_a) == 0)
-//	{
-//		ft_free_ll(&stack_a);
-//		return ;
-//	}
 /*
+	if (check_sorted(stack_a) == 1)
+		return ;
 	if (!stack_a)
 		return ;
 	if (size = 3)
@@ -166,8 +211,8 @@ void	push_swap(t_list *stack_a)
 		push_max;
 */
 //	swap_a(&stack_a);
-//	push_b(&stack_a, &stack_b);
-//	push_b(&stack_a, &stack_b);
+	push_b(&stack_a, &stack_b);
+	push_b(&stack_a, &stack_b);
 //	swap_b(&stack_b);
 //	swap_ab(&stack_a, &stack_b);
 //	push_a(&stack_a, &stack_b);
@@ -176,13 +221,52 @@ void	push_swap(t_list *stack_a)
 //	rotate_ab(&stack_a, &stack_b);
 //	revrotate_a(&stack_a);
 //	revrotate_b(&stack_b);
-//	revrotate_ab(&stack_a, &stack_b);
+	revrotate_ab(&stack_a, &stack_b);
 	testsorting(&stack_a, 'a');
 	testsorting(&stack_b, 'b');
 	return;
 }
 
-//delete the error message and return (0) if no parameters are specified (according to subject)
+// push swap function to work with an array of ints
+/* 
+//adapt function for final upload? 
+void	push_swap(int *stack_a, int size)
+{
+	int	*stack_b;
+
+//	ft_printf("test 5a\n");
+	stack_b = ft_calloc(1, sizeof(int));
+
+//	if (check_sorted(stack_a) == 1)
+//		return ;
+//	if (!stack_a)
+//		return ;
+//	if (size = 3)
+//		push_3(stack_a);
+//	else if (size =< 5)
+//		push_5(stack_a);
+//	else
+//		push_max;
+
+	swap_a(stack_a);
+	push_a(stack_a, stack_b);
+	testsorting(stack_a, size, 'a');
+	testsorting(stack_b, size, 'b');
+}
+*/
+/*
+t_list	*create_stack_a(int *stack_a, size)
+{
+	t_list	stacka;
+	int	i;
+	
+	while (size > i)
+	{
+		ft_lstadd_back(lst, ft_lstnew(stack_a[i]));
+		i++;
+	}
+}
+*/		
 //do I have to integrate read when argc == 0?
 int	main(int argc, char **argv)
 {
@@ -198,7 +282,7 @@ int	main(int argc, char **argv)
 		stack_char = clean_argv(argv, ft_calloc(1, sizeof(char *)));
 	else
 	{
-		perror("Error3: too less arguments\n: Change to return (0) and delete error message before closing the project");
+		perror("Error3: too less arguments\n");
 		return (1);
 	}
 	if (check_noarg(stack_char) != 0)
@@ -207,8 +291,11 @@ int	main(int argc, char **argv)
 		return (1);
 	size = ft_arrlen(stack_char);
 	stack_a = create_stack_a(stack_char, size);
+//	stack_a = create_stacka(stack_char, size);
+//	if (!stack_a || check_dupli(stack_a, size) == 1)
 	if (check_dupli(&stack_a) == 1)
 		return (1);
+//	ft_printf("test0\n");
 	push_swap(stack_a);
 	return (0);
 }

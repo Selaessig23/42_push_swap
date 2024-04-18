@@ -33,17 +33,19 @@ HEADERS = push_swap.h libft/libft.h
 
 #delete libft_bonus_parts after integration (esp. ft_lstadd_front.c)
 SRCS =	push_swap.c \
-		rule_swap.c \
-		rule_push.c \
-		rule_rotate.c \
-		rule_revrotate.c \
-		arg_check.c \
 		ps_helper.c \
-		input_check.c \
-		ft_lstlast.c \
-		ft_lstadd_front.c \
-		ft_lstnew.c \
-		ft_lstadd_back.c
+		sort_algo.c \
+		rules/rule_swap.c \
+		rules/rule_push.c \
+		rules/rule_rotate.c \
+		rules/rule_revrotate.c \
+		error_handling/arg_check.c \
+		error_handling/input_check.c \
+		libft_bonus/ft_lstlast.c \
+		libft_bonus/ft_lstadd_front.c \
+		libft_bonus/ft_lstnew.c \
+		libft_bonus/ft_lstadd_back.c \
+		libft_bonus/ft_lstsize.c
 
 LIBFT = libft.a
 

@@ -6,7 +6,7 @@
 #    By: mstracke <mstracke@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/11 09:59:44 by mstracke          #+#    #+#              #
-#    Updated: 2024/03/18 12:24:37 by mstracke         ###   ########.fr        #
+#    Updated: 2024/04/24 11:21:18 by mstracke         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ HEADERS = push_swap.h libft/libft.h
 SRCS =	push_swap.c \
 		ps_helper.c \
 		sort_algo.c \
+		cost_move.c \
 		rules/rule_swap.c \
 		rules/rule_push.c \
 		rules/rule_rotate.c \

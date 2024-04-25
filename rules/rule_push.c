@@ -20,6 +20,9 @@ static void	ft_push(t_list **stack_1, t_list **stack_2)
 		return ;
 	temp_2 = *stack_2;
 	*stack_2 = (*stack_2)->next;
+//	if (*stack_1 == NULL)
+//		temp_2->next = NULL;
+//	else
 	temp_2->next = *stack_1;
 	*stack_1 = temp_2;
 }
@@ -27,11 +30,11 @@ static void	ft_push(t_list **stack_1, t_list **stack_2)
 void	push_a(t_list **stack_a, t_list **stack_b)
 {
 	ft_push(stack_a, stack_b);
-	ft_printf("pb\n");
+	ft_printf("pa\n");
 }
 
 void	push_b(t_list **stack_a, t_list **stack_b)
 {
 	ft_push(stack_b, stack_a);
-	ft_printf("pa\n");
+	ft_printf("pb\n");
 }

@@ -6,7 +6,7 @@
 /*   By: mstracke <mstracke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:21:16 by mstracke          #+#    #+#             */
-/*   Updated: 2024/04/17 18:10:46 by mstracke         ###   ########.fr       */
+/*   Updated: 2024/04/24 11:20:04 by mstracke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,18 @@ int		check_signs(char **stack_char);
 int		intmaxcheck(t_list *stack_a, long long value);
 //int		intmaxcheck(int *stack_a, long long value);
 //sorting algortithms
-t_list	*sort_median(t_list **stack_a);
+void	push_3(t_list **stack);
+t_list	*sort_average(t_list **stack_a);
 void	sort_compare_ab(t_list **stack_a, t_list **stack_b);
+void	sort_biggest(t_list **stack_a, t_list **stack_b);
 void	resort_to_stacka(t_list **stack_a, t_list **stack_b);
+void	check_swap(t_list **stack);
+int    check_biggest(t_list *stack);
+int		check_sorted(t_list *stack_a);
+void	sort_clean_a(t_list **stack_a);
+void	sort_to_a(t_list **stack_a, t_list **stack_b);
+//for testing reasons:
+void	testsorting(t_list **stack, char c);
 
 /*
 void	*ft_calloc(size_t nmemb, size_t size);

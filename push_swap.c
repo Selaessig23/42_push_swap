@@ -6,7 +6,7 @@
 /*   By: mstracke <mstracke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:20:19 by mstracke          #+#    #+#             */
-/*   Updated: 2024/04/17 18:09:44 by mstracke         ###   ########.fr       */
+/*   Updated: 2024/04/24 12:39:39 by mstracke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 > improve the code by integrating ft_lstlast and clean the code of libft_bonus
 > [solved] write RULES with linked lists?
 > find algorithm
+> test with ./push_swap 7 9 6 5 20 14 55 66 32 1
 */
 
 #include "push_swap.h"
@@ -66,7 +67,7 @@ static t_list	*create_stack_a(char **stack_char, size_t size)
 }
 
 	//only for testing reasons
-	//free the nodes / linked lists
+	//free the nodes / linked lists --> commented out for testing reasons
 void	testsorting(t_list **stack, char c)
 {
 	t_list	*curr;
@@ -75,10 +76,11 @@ void	testsorting(t_list **stack, char c)
 
 	curr = *stack;
 	i = 0;
+	c = 12;
 	while (curr != NULL)
 	{
 		temp = curr;
-		ft_printf("stack_%c[%d]: $%d$\n", c, i, curr->content);
+//		ft_printf("stack_%c[%d]: $%d$\n", c, i, curr->content);
 		curr = curr->next;
 		free(temp);
 		i++;
@@ -86,26 +88,50 @@ void	testsorting(t_list **stack, char c)
 	stack = NULL;
 }
 
-/*
-void	push_3(int *stack_a, int *stack_b)
+//with three ints we only have 3*2*1 possibilities to sort the list
+//easy and most-efficient to handle hard-coded
+//less code would produce to first search for biggest number
+void	push_3(t_list **stack)
 {
-	if (stack_a[0] > stack_a[1] && stack_a[1] < stack_a[2] && stack_a[0] > stack_a[2])
-	{
-		rr_a(stack_a);
-		rr_a(stack_a);
-	}
-	if (stack_a[0] > stack_a[1])
-		swap_a(stack_a);
-	if (stack_a[1] > stack_a[2] && stack_a[2] < stack_a[0])
-		rr_a(stack_a);
-	else
-	{
-		rr_a(stack_a);
-		swap_a(stack_a);
-	}
+	t_list	*stack_1;
+	t_list	*stack_2;
 	
+	stack_1 = (*stack)->next;
+	stack_2 = stack_1->next;
+	if (ft_lstsize(*stack) == 2)
+	{
+//		ft_printf("te\n");
+		if (check_biggest(*stack) == 1)
+			swap_a(stack);
+	}
+	else if (ft_lstsize(*stack) == 3)
+	{//	ft_printf("push3\n");
+		if (((*stack)->content > stack_1->content) && (stack_1->content > stack_2->content))
+		{
+	//		ft_printf("case1A\n");
+			swap_a(stack);
+			revrotate_a(stack);
+		}
+		else if (stack_1->content > stack_2->content)
+		{
+	//		ft_printf("case1B\n");
+			revrotate_a(stack);
+			stack_1 = (*stack)->next;
+		}
+		if (((*stack)->content > stack_1->content) && ((*stack)->content > stack_2->content))
+		{
+	//		ft_printf("case2A\n");	
+			rotate_a(stack);
+		}
+		else if ((*stack)->content > stack_1->content)
+		{
+	//		ft_printf("case2B\n");	
+			swap_a(stack);
+		}
+	}
 }
 
+/*
 void	push_5(int *stack_a, int *stack_b)
 {
 	//if size ==5
@@ -126,6 +152,7 @@ int	check_sorted(t_list *stack_a)
 		stack_a = stack_a->next;
 		curr = curr->next;
 	}
+//	ft_printf("test1: %i\n", stack_a->next);
 	if (stack_a->next == NULL)
 	{
 //		perror("Already sorted: delete message and return "
@@ -136,19 +163,47 @@ int	check_sorted(t_list *stack_a)
 	return (9);
 }
 
-//adapt function for final upload? 
+//adapt function for final upload: when deleting testsorting integrate free 
 void	push_swap(t_list *stack_a)
 {
+	int	i;
 	t_list	*stack_b;
 
 	stack_b = NULL;
-//	ft_printf("test 5a\n");
 //	stack_b = ft_calloc(1, sizeof(t_list));
-	while (check_sorted(stack_a) == 9)
+	i = ft_lstsize(stack_a);
+//	while (check_sorted(stack_a) == 9)
+	if (check_sorted(stack_a) == 0)
 	{
-		stack_b = sort_median(&stack_a);
-		sort_compare_ab(&stack_a, &stack_b);
-		resort_to_stacka(&stack_a, &stack_b);
+		ft_free_ll(&stack_a);
+		return ;
+	}
+	if (i < 4)
+	{
+//		ft_printf("test1\n");
+		push_3(&stack_a);
+	}
+	else
+	{
+//		ft_printf("test2\n");
+		stack_b = sort_average(&stack_a);
+//		testsorting(&stack_b, 'b');
+		sort_to_a(&stack_a, &stack_b);
+//		testsorting(&stack_a, 'a');
+//		ft_printf("test 5a\n");
+		//not yet working: use code of check_sorted for it
+		sort_biggest(&stack_a, &stack_b);
+		if (check_sorted(stack_a) != 0)
+			sort_clean_a(&stack_a);
+		//sort_compare_ab(&stack_a, &stack_b);
+//		testsorting(&stack_a, 'a');
+//		testsorting(&stack_b, 'b');
+//		check_swap(&stack_b);
+//		resort_to_stacka(&stack_a, &stack_b);
+//		check_swap(&stack_a);
+//		testsorting(&stack_a, 'a');
+//		testsorting(&stack_b, 'b');
+//		i++;
 	}
 //	if (check_sorted(stack_a) == 0)
 //	{
@@ -177,8 +232,11 @@ void	push_swap(t_list *stack_a)
 //	revrotate_a(&stack_a);
 //	revrotate_b(&stack_b);
 //	revrotate_ab(&stack_a, &stack_b);
+//	ft_printf("testA\n");
 	testsorting(&stack_a, 'a');
+//	ft_printf("test");
 	testsorting(&stack_b, 'b');
+//	ft_free_ll(stack_a);
 	return;
 }
 

@@ -21,7 +21,7 @@ float	count_average(t_list *stack_a)
 	i = 0;
 	//necessary?
 	if (stack_a == NULL || stack_a->next == NULL)
-			return(1);
+			return (1);
 	curr = stack_a;
 //	ft_printf("hello1a\n");
 	while (curr != NULL)
@@ -55,7 +55,7 @@ t_list	*sort_average(t_list **stack_a)
 	stack_b = NULL;
 	curr = *stack_a;
 //	while (i < ft_lstsize(*stack_a))
-	while (ft_lstsize(curr) > 2)
+	while (ft_lstsize(curr) > 4)
 	{
 //		ft_printf("hello\n");		
 		if (curr->content < count_average(curr))

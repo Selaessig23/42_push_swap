@@ -76,16 +76,16 @@ void	testsorting(t_list **stack, char c)
 
 	curr = *stack;
 	i = 0;
-	c = 12;
+//	c = 12;
 	while (curr != NULL)
 	{
 		temp = curr;
-//		ft_printf("stack_%c[%d]: $%d$\n", c, i, curr->content);
+		ft_printf("stack_%c[%d]: $%d$\n", c, i, curr->content);
 		curr = curr->next;
-		free(temp);
+//		free(temp);
 		i++;
 	}
-	stack = NULL;
+//	stack = NULL;
 }
 
 //with three ints we only have 3*2*1 possibilities to sort the list
@@ -187,14 +187,15 @@ void	push_swap(t_list *stack_a)
 	{
 //		ft_printf("test2\n");
 		stack_b = sort_average(&stack_a);
-//		testsorting(&stack_b, 'b');
-		sort_to_a(&stack_a, &stack_b);
-//		testsorting(&stack_a, 'a');
+		testsorting(&stack_a, 'a');
+		testsorting(&stack_b, 'b');
+		exe_oper(&stack_a, &stack_b);
+//		sort_to_a(&stack_a, &stack_b);
 //		ft_printf("test 5a\n");
 		//not yet working: use code of check_sorted for it
-		sort_biggest(&stack_a, &stack_b);
-		if (check_sorted(stack_a) != 0)
-			sort_clean_a(&stack_a);
+//		sort_biggest(&stack_a, &stack_b);
+//		if (check_sorted(stack_a) != 0)
+//			sort_clean_a(&stack_a);
 		//sort_compare_ab(&stack_a, &stack_b);
 //		testsorting(&stack_a, 'a');
 //		testsorting(&stack_b, 'b');
@@ -233,9 +234,9 @@ void	push_swap(t_list *stack_a)
 //	revrotate_b(&stack_b);
 //	revrotate_ab(&stack_a, &stack_b);
 //	ft_printf("testA\n");
-	testsorting(&stack_a, 'a');
+//	testsorting(&stack_a, 'a');
 //	ft_printf("test");
-	testsorting(&stack_b, 'b');
+//	testsorting(&stack_b, 'b');
 //	ft_free_ll(stack_a);
 	return;
 }

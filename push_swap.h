@@ -72,7 +72,14 @@ int    check_biggest(t_list *stack);
 int		check_sorted(t_list *stack_a);
 void	sort_clean_a(t_list **stack_a);
 void	sort_to_a(t_list **stack_a, t_list **stack_b);
-//for testing reasons:
+//cheapest_target.c
+int	find_index(t_list **stack, int num);
+int  find_target(t_list **stack, int num);
+int	calc_operations(t_list **stack_current, t_list **stack_other, int num);
+int	find_cheapest(t_list **stack_a, t_list **stack_b);
+//cheapest_algo.c
+void	exe_oper(t_list **stack_a, t_list **stack_b);
+//for testing reasons (adapt to free-version before closing project):
 void	testsorting(t_list **stack, char c);
 
 /*

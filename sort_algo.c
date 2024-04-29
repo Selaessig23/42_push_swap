@@ -12,29 +12,29 @@
 
 #include "push_swap.h"
 
-//calculate the average
-float	count_average(t_list *stack_a)
+//calculate the average of a list
+float	count_average(t_list *stack)
 {
 	t_list	*curr;
 	int	i;
 
 	i = 0;
 	//necessary?
-	if (stack_a == NULL || stack_a->next == NULL)
+	if (stack == NULL || stack->next == NULL)
 			return (1);
-	curr = stack_a;
+	curr = stack;
 //	ft_printf("hello1a\n");
 	while (curr != NULL)
 	{
 		i += curr->content;
 		curr = curr->next;
 	}
-	if (i == 0 || ft_lstsize(stack_a) == 0)
+	if (i == 0 || ft_lstsize(stack) == 0)
 		return (0);
-//	ft_printf("%i\n", i);
-//	ft_printf("%i\n", ft_lstsize(stack_a));
-//	ft_printf("%i\n", (i / ft_lstsize(stack_a)));
-	return (i / ft_lstsize(stack_a));
+//	ft_printf("All numbers: %i\n", i);
+//	ft_printf("%i\n", ft_lstsize(stack));
+//	ft_printf("%i\n", (i / ft_lstsize(stack)));
+	return (i / ft_lstsize(stack));
 }
 
 //sort list (minus 3 elements) according to average:
@@ -55,7 +55,7 @@ t_list	*sort_average(t_list **stack_a)
 	stack_b = NULL;
 	curr = *stack_a;
 //	while (i < ft_lstsize(*stack_a))
-	while (ft_lstsize(curr) > 4)
+	while (ft_lstsize(curr) > 3)
 	{
 //		ft_printf("hello\n");		
 		if (curr->content < count_average(curr))
@@ -77,8 +77,8 @@ t_list	*sort_average(t_list **stack_a)
 //		ft_printf("%i\n", curr->next);
 	}
 //	ft_printf("hello5\n");
-//	push_3(stack_a);
-	push_b(stack_a, &stack_b);
+	push_3(stack_a);
+//	push_b(stack_a, &stack_b);
 //	push_b(stack_a, &stack_b);
 //	push_b(stack_a, &stack_b);
 	return (stack_b);

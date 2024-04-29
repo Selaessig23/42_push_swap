@@ -12,6 +12,44 @@
 
 #include "push_swap.h"
 
+	//search the index of the smallest int
+int    check_smallest(t_list *stack)
+{
+    t_list  *curr;
+    t_list  *small;
+    int i;
+    int j;
+    int k;
+
+	small = stack;
+    	curr = small->next;
+	i = 0;
+	j = 1;
+	k = (j - 1);
+//	testsorting(&stack, 'b');
+	if (stack == NULL || (stack)->next == NULL)
+		return (0);
+	while (curr)
+	{
+		if (small->content < curr->content)
+		{
+			k++;
+		}
+        	else
+		{
+			small = curr;
+			i = j;
+			k++;
+		}
+		curr = curr->next;
+		j++;
+	}
+//	j = i;
+//	ft_printf("highest-Number: %i\n", big->content);
+//	ft_printf("Index: %i of %i of %i\n", i, (ft_lstsize(stack)), k);
+	return (i);
+}
+
 	//search the index of the biggest int
 int    check_biggest(t_list *stack)
 {

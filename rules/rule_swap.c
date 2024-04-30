@@ -10,6 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*DESCRIPTION
+sa (swap a): Swap the first 2 elements at the top of stack a.
+Do nothing if there is only one or no elements.
+sb (swap b): Swap the first 2 elements at the top of stack b.
+Do nothing if there is only one or no elements. */
 #include "../push_swap.h"
 
 //maybe change error handling to 0, 

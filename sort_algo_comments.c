@@ -16,13 +16,14 @@
 float	count_average(t_list *stack)
 {
 	t_list	*curr;
-	int		i;
+	int	i;
 
 	i = 0;
 	//necessary?
 	if (stack == NULL || stack->next == NULL)
-		return (1);
+			return (1);
 	curr = stack;
+//	ft_printf("hello1a\n");
 	while (curr != NULL)
 	{
 		i += curr->content;
@@ -30,6 +31,9 @@ float	count_average(t_list *stack)
 	}
 	if (i == 0 || ft_lstsize(stack) == 0)
 		return (0);
+//	ft_printf("All numbers: %i\n", i);
+//	ft_printf("%i\n", ft_lstsize(stack));
+//	ft_printf("%i\n", (i / ft_lstsize(stack)));
 	return (i / ft_lstsize(stack));
 }
 
@@ -41,31 +45,45 @@ t_list	*sort_average(t_list **stack_a)
 {
 	t_list	*stack_b;
 	t_list	*curr;
+//	int	i;
 
+
+//	i = 0;
 	//necessary?
 	if (*stack_a == NULL || (*stack_a)->next == NULL)
-		return (NULL);
+			return (NULL);
 	stack_b = NULL;
 	curr = *stack_a;
+//	while (i < ft_lstsize(*stack_a))
 	while (ft_lstsize(curr) > 3)
 	{
+//		ft_printf("hello\n");		
 		if (curr->content < count_average(curr))
 		{
 			push_b(stack_a, &stack_b);
 			if (stack_b->content < count_average(stack_b))
 				rotate_b(&stack_b);
 			curr = *stack_a;
+//			ft_printf("hello11\n");
 		}
 		else
 		{
+//			ft_printf("hello22\n");
 			rotate_a(stack_a);
 			curr = *stack_a;
 		}
+//		ft_printf("%i\n", curr->content);
+//		i++;
+//		ft_printf("%i\n", curr->next);
 	}
+//	ft_printf("hello5\n");
 	push_3(stack_a);
+//	push_b(stack_a, &stack_b);
+//	push_b(stack_a, &stack_b);
+//	push_b(stack_a, &stack_b);
 	return (stack_b);
 }
-/*
+
 //sort according to cheapest way of biggest numbers
 void	sort_biggest(t_list **stack_a, t_list **stack_b)
 {
@@ -139,8 +157,7 @@ void	sort_compare_ab(t_list **stack_a, t_list **stack_b)
 			printf("case a\n");
 			push_a(stack_a, stack_b);
 		}
-		else if (((*stack_a)->content) > (curr->content) && 
-			(curr->content > (ft_lstlast(*stack_a))->content))
+		else if (((*stack_a)->content) > (curr->content) && (curr->content > (ft_lstlast(*stack_a))->content))
 		{
 			printf("case b\n");
 			push_a(stack_a, stack_b);
@@ -198,4 +215,4 @@ void	check_swap(t_list **stack)
 		swap_a(stack);
 	}
 }
-*/
+

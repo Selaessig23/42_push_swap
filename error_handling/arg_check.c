@@ -85,7 +85,6 @@ static char	**concat_argv(char **argv_cleaned, char *argv, size_t t)
 	return (argv_cleaned);
 }
 
-//helper function for clean_argv
 //1st step: check if there are spaces within one argument
 static int	clean_help(char *argv, char ***argv_temp2)
 {
@@ -112,7 +111,6 @@ static int	clean_help(char *argv, char ***argv_temp2)
 
 //attempt to find a way to work with input 
 //if strings and int are mixed, 
-//maybe better (easier) to just return an error message
 //check if there are spaces within one argument
 //no: add string to string-array
 //yes: add string-array to string-array
@@ -137,7 +135,6 @@ char	**clean_argv(char **argv, char **argv_cleaned)
 		else
 		{
 			t = (t + ft_arrlen(argv_temp2));
-//			ft_printf("%i\n", ft_arrlen(argv_temp2));
 			argv_cleaned = int_multiple_arg(argv_cleaned, argv_temp2, t);
 		}
 		i++;

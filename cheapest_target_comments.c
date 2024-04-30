@@ -16,8 +16,8 @@
 int	find_index(t_list **stack, int num)
 {
 	t_list	*curr;
-	int		index;
-
+	int	index;
+	
 	//what happens if I return 0 here, better would be an error code
 	if (*stack == NULL)
 		return (0);
@@ -38,14 +38,18 @@ int	find_index(t_list **stack, int num)
 int	find_target(t_list **stack, int num)
 {
 	t_list	*curr;
-	int		target_num;
-	int		target_index;
-	int		i;
+//	t_list	*target_node;
+	int	target_num;
+	int	target_index;
+	int	i;
 
 	//what happens if I return 0 here, better would be an error code
 	if (*stack == NULL)
 		return (0);
+		//what happens if return is NULL
+		//return (NULL);
 	target_index = check_smallest(*stack);
+//	target_num = check_biggest(*stack);
 	curr = (*stack);
 	i = 0;
 	while (i < target_index)
@@ -53,18 +57,23 @@ int	find_target(t_list **stack, int num)
 		curr = curr->next;
 		i++;
 	}
+//	target_node = curr;
 	target_num = curr->content;
+//	ft_printf("test\n");
 	curr = (*stack);
 	while (curr)
 	{
+//		if (curr->content < num)
 		if (curr->content > num)
 		{
+//			target = curr;
 			target_num = curr->content;
 			while (curr)
 			{
 				if (curr->content > num && curr->content < target_num)
+//				if (curr->content < num && curr->content > target_num)
 					target_num = curr->content;
-				curr = curr->next;
+				curr = curr->next;					
 			}
 			break ;
 		}
@@ -73,25 +82,12 @@ int	find_target(t_list **stack, int num)
 	return (target_num);
 }
 
-//helper variable to calculate the number of moves
-//to bring number and his target on top (equal to index)
-//consider median(!) as it is allowed to rotate up AND down
-int	calc_moves(t_list **stack, int num)
-{
-	int	moves;
-	
-	moves = find_index(stack, num);
-	if (moves > (ft_lstsize(*stack) / 2))
-		moves = ft_lstsize(*stack) - moves;
-	return (moves);
-}
-
 //helper variable to calculate the number of operations
 //for target_operations
 static int	calc_operations(int *moves_curr, int *moves_other)
 {
 	int	operations; 
-
+	
 	operations = 0;
 	while (*moves_curr != 0 && *moves_other != 0)
 	{
@@ -106,7 +102,6 @@ static int	calc_operations(int *moves_curr, int *moves_other)
 //search for the moves that have to been make 
 //to push input number on top
 //and corresponding target number on top
-//(==index of both numbers)
 //on that basis: 
 //search for the operations that have to be executed for input number
 //be careful! stack_a and stack_b have a different orden
@@ -116,31 +111,60 @@ int	target_operations(t_list **stack_current, t_list **stack_other, int num, boo
 	int	moves_curr;
 	int	moves_other;
 	int	operations;
-
-	moves_curr = calc_moves(stack_current, num);
-	moves_other = calc_moves(stack_other, find_target(stack_other, num));
+	
+	//check how many moves are necessary, 
+	//consider median(!) as it is allowed to rotate up AND down
+	moves_curr = find_index(stack_current, num);
+	if (moves_curr > (ft_lstsize(*stack_current) / 2))
+		moves_curr = ft_lstsize(*stack_current) - moves_curr;
+	moves_other = find_index(stack_other, find_target(stack_other, num));
+	if (moves_other > (ft_lstsize(*stack_other) / 2))
+		moves_other = ft_lstsize(*stack_other) - moves_other;
 	operations = 0;
+//	ft_printf("test_A-1\n");
+//	if ((moves_curr > 0) && (moves_other > 0) && (num > count_average(*stack_current)) && (find_target(stack_other, num) > count_average(*stack_other)))
 	if ((moves_curr > 0) && (moves_other > 0) && (find_index(stack_other, find_target(stack_other, num)) < (ft_lstsize(*stack_other) / 2)) && (find_index(stack_current, num) < (ft_lstsize(*stack_current) / 2)))
+	
 	{
 		if (exe == false)
 			operations = calc_operations(&moves_curr, &moves_other);
 		else
-			exe_operations_up(stack_current, stack_other, num);
+			exe_operations_up(stack_current, stack_other, &moves_curr, &moves_other, num);
+//		while (moves_curr == 0 || moves_other == 0)
+//		{
+//			operations++;
+//			moves_curr--;
+//			moves_other--;
+//		}
+//		operations = operations + moves_curr + moves_other;
 	}
+//	else if ((moves_curr > 0 && moves_other > 0 && num < count_average(*stack_current)) && (find_target(stack_other, num) < count_average(*stack_other)))
 	else if ((moves_curr > 0) && (moves_other > 0) && (find_index(stack_other, find_target(stack_other, num)) > (ft_lstsize(*stack_other) / 2)) && (find_index(stack_current, num) > (ft_lstsize(*stack_current) / 2)))
 	{
 		if (exe == false)
 			operations = calc_operations(&moves_curr, &moves_other);
+//		while (moves_curr == 0 || moves_other == 0)
+//		{
+//			operations++;
+//			moves_curr--;
+//			moves_other--;
+//		}
+//		operations = operations + moves_curr + moves_other;
 		else
-			exe_operations_down(stack_current, stack_other, num);
+			exe_operations_down(stack_current, stack_other, &moves_curr, &moves_other, num);
 	}
 	else
 	{
 		if (exe == false)
 			operations = moves_curr + moves_other;
 		else
-			exe_operations_single(stack_current, stack_other, num);
+		{
+//			ft_printf("Curr moves: %i, other moves: %i\n", moves_curr, moves_other);
+			exe_operations_single(stack_current, stack_other, &moves_curr, &moves_other, num);
+			
+		}
 	}
+//	ft_printf("test_A-2\n");
 	return (operations);
 }
 
@@ -151,16 +175,18 @@ int	find_cheapest(t_list **stack_a, t_list **stack_b)
 	t_list	*curr;
 	t_list	*cheapest;
 	bool	exe;
-
+	
 	exe = false;
 	cheapest = (*stack_b);
 	curr = cheapest->next;
+//	ft_printf("test_A\n");
 	while (curr != NULL)
 	{
-		if (target_operations(stack_b, stack_a, cheapest->content, exe) 
-			> target_operations(stack_b, stack_a, curr->content, exe))
+//		cheapest = (*stack_b);
+		if (target_operations(stack_b, stack_a, cheapest->content, exe) > target_operations(stack_b, stack_a, curr->content, exe))
 			cheapest = curr;
 		curr = curr->next;
 	}
+//	return (find_index(stack_b, cheapest->content);
 	return (cheapest->content);
 }

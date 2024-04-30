@@ -16,9 +16,6 @@
 
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	//add the next pointer of the new start of the list (new) to the
-	//past start of the list (lst)
 	new->next = *lst;
-	//set the new start of the list to new
 	*lst = new;
 }

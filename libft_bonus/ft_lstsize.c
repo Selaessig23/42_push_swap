@@ -18,17 +18,12 @@
 int	ft_lstsize(t_list *lst)
 {
 	int	i;
-//	t_list	*curr;
 
-//	ft_printf("hello1b-1\n");
 	i = 0;
-//	curr = lst;
-	while(lst != NULL)
+	while (lst != NULL)
 	{
 		lst = lst->next;
 		i++;
 	}
-//	ft_printf("hello1b-2\n");
 	return (i);
 }
-

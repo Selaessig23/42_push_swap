@@ -79,14 +79,15 @@ void	sort_to_a(t_list **stack_a, t_list **stack_b);
 //cheapest_target.c
 int	find_index(t_list **stack, int num);
 int  find_target(t_list **stack, int num);
+int	calc_moves(t_list **stack, int num);
 int	target_operations(t_list **stack_current, t_list **stack_other, int num, bool exe);
 int	find_cheapest(t_list **stack_a, t_list **stack_b);
 //cheapest_algo.c for testing
 void	exe_oper(t_list **stack_a, t_list **stack_b);
 //cheapest_algo.c
-void	exe_operations_single(t_list **stack_current, t_list **stack_other, int *moves_curr, int *moves_other, int num);
-void	exe_operations_down(t_list **stack_current, t_list **stack_other, int *moves_curr, int* moves_other, int num);
-void	exe_operations_up(t_list **stack_current, t_list **stack_other, int *moves_curr, int *moves_other, int num);
+void	exe_operations_single(t_list **stack_current, t_list **stack_other, int num);
+void	exe_operations_down(t_list **stack_current, t_list **stack_other, int num);
+void	exe_operations_up(t_list **stack_current, t_list **stack_other, int num);
 void	exe_cheapest(t_list **stack_a, t_list **stack_b);
 //for testing reasons (adapt to free-version before closing project):
 //void	testsorting(t_list **stack, char c);

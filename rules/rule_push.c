@@ -10,6 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/* DESCRIPTION: */
+/* pa (push a): Take the first element at the */
+/* top of b and put it at the top of a. */
+/* Do nothing if b is empty. */
+/* pb (push b): Take the first element at the */
+/* top of a and put it at the top of b. */
+/* Do nothing if a is empty */
 #include "../push_swap.h"
 
 static void	ft_push(t_list **stack_1, t_list **stack_2)
@@ -20,9 +27,6 @@ static void	ft_push(t_list **stack_1, t_list **stack_2)
 		return ;
 	temp_2 = *stack_2;
 	*stack_2 = (*stack_2)->next;
-//	if (*stack_1 == NULL)
-//		temp_2->next = NULL;
-//	else
 	temp_2->next = *stack_1;
 	*stack_1 = temp_2;
 }

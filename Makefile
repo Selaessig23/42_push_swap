@@ -103,7 +103,7 @@ $(LIBFT_CREATE):
 #clean: This target removes the object files ($(OFILES)).
 #f: "force" -->prevents the command from prompting for confirmation
 clean:
-	@rm -rf *.o
+	@rm -f $(OBJS)
 	make -C $(LIBFT_PATH) clean
 	@echo -- Deleting All .o
 

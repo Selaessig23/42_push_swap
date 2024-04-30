@@ -89,7 +89,7 @@ static int	calc_operations(int *moves_curr, int *moves_other)
 	int	operations; 
 	
 	operations = 0;
-	while (*moves_curr == 0 || *moves_other == 0)
+	while (*moves_curr != 0 && *moves_other != 0)
 	{
 		operations++;
 		*moves_curr = *moves_curr - 1;
@@ -123,7 +123,7 @@ int	target_operations(t_list **stack_current, t_list **stack_other, int num, boo
 	operations = 0;
 //	ft_printf("test_A-1\n");
 //	if ((moves_curr > 0) && (moves_other > 0) && (num > count_average(*stack_current)) && (find_target(stack_other, num) > count_average(*stack_other)))
-	if ((moves_curr > 0) && (moves_other > 0) && (find_index(stack_other, find_target(stack_other, num)) < (ft_lstsize(*stack_other) / 2)) && (find_index(stack_current, num) > (ft_lstsize(*stack_current) / 2)))
+	if ((moves_curr > 0) && (moves_other > 0) && (find_index(stack_other, find_target(stack_other, num)) < (ft_lstsize(*stack_other) / 2)) && (find_index(stack_current, num) < (ft_lstsize(*stack_current) / 2)))
 	
 	{
 		if (exe == false)
@@ -139,7 +139,7 @@ int	target_operations(t_list **stack_current, t_list **stack_other, int num, boo
 //		operations = operations + moves_curr + moves_other;
 	}
 //	else if ((moves_curr > 0 && moves_other > 0 && num < count_average(*stack_current)) && (find_target(stack_other, num) < count_average(*stack_other)))
-	else if ((moves_curr > 0) && (moves_other > 0) && (find_index(stack_other, find_target(stack_other, num)) > (ft_lstsize(*stack_other) / 2)) && (find_index(stack_current, num) < (ft_lstsize(*stack_current) / 2)))
+	else if ((moves_curr > 0) && (moves_other > 0) && (find_index(stack_other, find_target(stack_other, num)) > (ft_lstsize(*stack_other) / 2)) && (find_index(stack_current, num) > (ft_lstsize(*stack_current) / 2)))
 	{
 		if (exe == false)
 			operations = calc_operations(&moves_curr, &moves_other);
@@ -159,7 +159,7 @@ int	target_operations(t_list **stack_current, t_list **stack_other, int num, boo
 			operations = moves_curr + moves_other;
 		else
 		{
-			ft_printf("Curr moves: %i, other moves: %i\n", moves_curr, moves_other);
+//			ft_printf("Curr moves: %i, other moves: %i\n", moves_curr, moves_other);
 			exe_operations_single(stack_current, stack_other, &moves_curr, &moves_other, num);
 			
 		}
@@ -182,7 +182,7 @@ int	find_cheapest(t_list **stack_a, t_list **stack_b)
 //	ft_printf("test_A\n");
 	while (curr != NULL)
 	{
-		cheapest = (*stack_b);
+//		cheapest = (*stack_b);
 		if (target_operations(stack_b, stack_a, cheapest->content, exe) > target_operations(stack_b, stack_a, curr->content, exe))
 			cheapest = curr;
 		curr = curr->next;

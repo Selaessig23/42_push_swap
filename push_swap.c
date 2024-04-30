@@ -187,8 +187,8 @@ void	push_swap(t_list *stack_a)
 	{
 //		ft_printf("test2\n");
 		stack_b = sort_average(&stack_a);
-		testsorting(&stack_a, 'a');
-		testsorting(&stack_b, 'b');
+//		testsorting(&stack_a, 'a');
+//		testsorting(&stack_b, 'b');
 //		test_oper(&stack_a, &stack_b);
 		exe_cheapest(&stack_a, &stack_b);
 //		sort_to_a(&stack_a, &stack_b);
@@ -203,8 +203,8 @@ void	push_swap(t_list *stack_a)
 //		check_swap(&stack_b);
 //		resort_to_stacka(&stack_a, &stack_b);
 //		check_swap(&stack_a);
-		testsorting(&stack_a, 'a');
-		testsorting(&stack_b, 'b');
+//		testsorting(&stack_a, 'a');
+//		testsorting(&stack_b, 'b');
 //		i++;
 	}
 //	if (check_sorted(stack_a) == 0)

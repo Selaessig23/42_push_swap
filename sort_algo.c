@@ -61,7 +61,7 @@ t_list	*sort_average(t_list **stack_a)
 		if (curr->content < count_average(curr))
 		{
 			push_b(stack_a, &stack_b);
-			if (curr->content < count_average(stack_b))
+			if (stack_b->content < count_average(stack_b))
 				rotate_b(&stack_b);
 			curr = *stack_a;
 //			ft_printf("hello11\n");

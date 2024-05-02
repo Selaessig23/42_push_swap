@@ -18,7 +18,7 @@
 /* return value size_t (to exclude INT_MAX & INT_MIN) */
 # include "libft/libft.h"
 # include <limits.h>
-# include <stdbool.h>
+//# include <stdbool.h>
 
 //declare linked lists
 typedef struct s_list
@@ -72,19 +72,21 @@ t_list	*sort_average(t_list **stack_a);
 //void	resort_to_stacka(t_list **stack_a, t_list **stack_b);
 //void	check_swap(t_list **stack);
 //cheapest_algo.c
+void	exe_t_operations(t_list **stack_current, t_list **stack_other, int num);
 void	exe_operations_single(t_list **stack_current, t_list **stack_other, int num);
 void	exe_operations_down(t_list **stack_current, t_list **stack_other, int num);
 void	exe_operations_up(t_list **stack_current, t_list **stack_other, int num);
 void	exe_cheapest(t_list **stack_a, t_list **stack_b);
 //cheapest_target.c
-int	find_index(t_list **stack, int num);
 int	find_target(t_list **stack, int num);
 int	calc_moves(t_list **stack, int num);
-int	target_operations(t_list **stack_current, t_list **stack_other, int num, bool exe);
+int	count_t_operations(t_list **stack_current, t_list **stack_other, int num);
 int	find_cheapest(t_list **stack_a, t_list **stack_b);
 //algo_helper.c sorting algortithms helper functions
-int    check_smallest(t_list *stack);
-int    check_biggest(t_list *stack);
+int	check_smallest(t_list *stack);
+int	check_biggest(t_list *stack);
+int	find_index(t_list **stack, int num);
+int	find_number(t_list *stack, int index);
 //void	sort_clean_a(t_list **stack_a);
 //void	sort_to_a(t_list **stack_a, t_list **stack_b);
 

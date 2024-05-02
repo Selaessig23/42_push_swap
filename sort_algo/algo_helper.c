@@ -12,6 +12,25 @@
 
 #include "../push_swap.h"
 
+//calculate index of a certain number
+//if stack = NULLthe return is 0, better would be an error code???
+//	if (*stack == NULL)
+//		return (1);
+int	find_index(t_list **stack, int num)
+{
+	t_list	*curr;
+	int		index;
+
+	curr = (*stack);
+	index = 0;
+	while (curr && (curr->content != num))
+	{
+		index++;
+		curr = curr->next;
+	}
+	return (index);
+}
+
 //search the index of the smallest int
 int	check_smallest(t_list *stack)
 {
@@ -64,4 +83,19 @@ int	check_biggest(t_list *stack)
 		j++;
 	}
 	return (i);
+}
+
+//find the number of a specifiic index on the stack
+int	find_number(t_list *stack, int index)
+{
+	int	num;
+
+	num = 0;
+	while (num < index)
+	{
+		stack = stack->next;
+		num++;
+	}
+	num = stack->content;
+	return (num);
 }

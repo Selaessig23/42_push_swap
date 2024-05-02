@@ -35,7 +35,7 @@ HEADERS = push_swap.h libft/libft.h
 SRCS =	main.c \
 		push_swap.c \
 		ps_helper.c \
-		sort_algo.c \
+		sort_algo/sort_average.c \
 		cost_move.c \
 		cheapest_target.c \
 		cheapest_algo.c \

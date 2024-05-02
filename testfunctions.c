@@ -38,7 +38,7 @@ void	testsorting(t_list **stack, char c)
 
 
 //for testing reasons: cheapest target node
-static void	test_oper(t_list **stack_a, t_list **stack_b)
+void	test_oper(t_list **stack_a, t_list **stack_b)
 {
 	int	index_cheapest;
 	int	index_target;

@@ -38,6 +38,7 @@ void	ft_free(char **stack_char)
 	stack_char = NULL;
 }
 
+//free a linked list
 void	ft_free_ll(t_list **ll)
 {
 	t_list	*temp;
@@ -52,27 +53,4 @@ void	ft_free_ll(t_list **ll)
 	}
 	curr = NULL;
 }
-/*
-int	ft_strcmp(const char *str1, const char *str2)
-{
-	while (*str1)
-	{
-		if (*str1 != *str2)
-			return (*str1 - *str2);
-		str1++;
-		str2++;
-	}
-	return (0);
-}
-*/
-/*
-int	calc_size(char **stack_char)
-{
-	int	i;
-	
-	i = 0;
-	while (stack_char[i])
-		i++;
-	return (i);
-}
-*/
+

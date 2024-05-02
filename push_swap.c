@@ -30,7 +30,7 @@ int	intmaxcheck(t_list *stack_a, long long value)
 //use input arguments and create a linked list (used as stack_a)
 //do not return 0 if error, better instead: exit 1?
 //free the nodes / linked lists
-static t_list	*create_stack_a(char **stack_char, size_t size)
+t_list	*create_stack_a(char **stack_char, size_t size)
 {
 	size_t	i;
 	t_list	*stack_a;
@@ -53,31 +53,8 @@ static t_list	*create_stack_a(char **stack_char, size_t size)
 	return (stack_a);
 }
 
-//only for testing reasons
-//free the nodes / linked lists --> commented out for testing reasons
-//choose better name
-void	testsorting(t_list **stack, char c)
-{
-	t_list	*curr;
-	t_list	*temp;
-	int		i;
-
-	curr = *stack;
-	i = 0;
-	c = 12;
-	while (curr != NULL)
-	{
-		temp = curr;
-//		ft_printf("stack_%c[%d]: $%d$\n", c, i, curr->content);
-		curr = curr->next;
-		free(temp);
-		i++;
-	}
-	stack = NULL;
-}
-
 //with three ints we only have 3*2*1 possibilities to sort the list
-//easy and most-efficient to handle hard-coded
+//easy and most-efficient to handle these possibilities hard-coded
 //less code would produce to first search for biggest number
 void	push_3(t_list **stack)
 {
@@ -147,39 +124,7 @@ void	push_swap(t_list *stack_a)
 		stack_b = sort_average(&stack_a);
 		exe_cheapest(&stack_a, &stack_b);
 	}
-	testsorting(&stack_a, 'a');
-	testsorting(&stack_b, 'b');
+	ft_free_ll(*stack_a);
+	ft_free_ll(*stack_a);
 	return ;
-}
-
-//delete the error message and return (0) if no parameters 
-//are specified (according to subject)
-//do I have to integrate read when argc == 0?
-int	main(int argc, char **argv)
-{
-	char	**stack_char;
-	t_list	*stack_a;
-	int		size;
-
-	size = 0;
-	if (argc == 2)
-		stack_char = ft_split(argv[1], 32);
-	else if (argc > 2)
-		stack_char = clean_argv(argv, ft_calloc(1, sizeof(char *)));
-	else
-	{
-		perror("Error3: too less arguments\n: Change to return (0) "
-			"and delete error message before closing the project");
-		return (1);
-	}
-	if (check_noarg(stack_char) != 0)
-		return (1);
-	if (input_errorcheck(stack_char) == 1 || check_signs(stack_char) == 1)
-		return (1);
-	size = ft_arrlen(stack_char);
-	stack_a = create_stack_a(stack_char, size);
-	if (check_dupli(&stack_a) == 1)
-		return (1);
-	push_swap(stack_a);
-	return (0);
 }

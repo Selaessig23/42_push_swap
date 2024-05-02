@@ -12,7 +12,8 @@
 
 #include "../push_swap.h"
 
-int	digit_check(char *str)
+//check if string only consists of digits
+static int	digit_check(char *str)
 {
 	int	j;
 

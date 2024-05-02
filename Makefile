@@ -32,7 +32,8 @@ CPPFLAGS =
 HEADERS = push_swap.h libft/libft.h
 
 #delete libft_bonus_parts after integration (esp. ft_lstadd_front.c)
-SRCS =	push_swap.c \
+SRCS =	main.c \
+		push_swap.c \
 		ps_helper.c \
 		sort_algo.c \
 		cost_move.c \
@@ -49,6 +50,7 @@ SRCS =	push_swap.c \
 		libft_bonus/ft_lstnew.c \
 		libft_bonus/ft_lstadd_back.c \
 		libft_bonus/ft_lstsize.c
+#		testfunctions.c
 
 LIBFT = libft.a
 

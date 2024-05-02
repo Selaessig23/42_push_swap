@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 //be careful! stack_a and stack_b have a different orden
 //(stack_a from smallest to biggest and stack_b from biggest to smallest)

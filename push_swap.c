@@ -124,7 +124,7 @@ void	push_swap(t_list *stack_a)
 		stack_b = sort_average(&stack_a);
 		exe_cheapest(&stack_a, &stack_b);
 	}
-	ft_free_ll(*stack_a);
-	ft_free_ll(*stack_a);
+	ft_free_ll(&stack_a);
+	ft_free_ll(&stack_b);
 	return ;
 }

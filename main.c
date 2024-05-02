@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
 //delete the error message and return (0) if no parameters 
 //are specified (according to subject)
 //do I have to integrate read when argc == 0?

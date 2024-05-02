@@ -42,7 +42,7 @@ size_t	ft_arrlen(char **argv_temp2);
 //arg_check.c: check if arguments are strings and or inte
 char	**clean_argv(char **argv, char **argv_cleaned);
 //input_check.c: check input in detail
-int		digit_check(char *str);
+//int		digit_check(char *str);
 int		input_errorcheck(char **stack_char);
 int		check_noarg(char **stack_char);
 int		check_dupli(t_list **stack_a);

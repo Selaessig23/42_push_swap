@@ -46,7 +46,6 @@ SRCS =	main.c \
 		error_handling/arg_check.c \
 		error_handling/input_check.c \
 		libft_bonus/ft_lstlast.c \
-		libft_bonus/ft_lstadd_front.c \
 		libft_bonus/ft_lstnew.c \
 		libft_bonus/ft_lstadd_back.c \
 		libft_bonus/ft_lstsize.c

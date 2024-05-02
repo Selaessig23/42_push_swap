@@ -94,30 +94,6 @@ int	check_dupli(t_list **stack_a)
 	return (0);
 }
 
-/*
-	//error_check duplicates within an array of ints
-int	check_dupli(int *stack_a, int size)
-{
-	int	j;
-
-	j = 1;
-	size = size - 1;
-	while (size >= 0)
-	{
-		j = size - 1;
-		while ((j >= 0 && stack_a[size] != stack_a[j]))
-			j--;
-		if (j >= 0 && stack_a[size] == stack_a[j])
-		{
-			free(stack_a);
-			perror("Error1: Duplicates within arguments");
-			return (1);
-		}
-		size--;
-	}
-	return (0);
-}
-*/
 	//error_check for double signs
 	//created *temp to make it more readable
 int	check_signs(char **stack_char)

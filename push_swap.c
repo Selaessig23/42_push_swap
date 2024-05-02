@@ -55,14 +55,8 @@ t_list	*create_stack_a(char **stack_char, size_t size)
 
 //with three ints we only have 3*2*1 possibilities to sort the list
 //easy and most-efficient to handle these possibilities hard-coded
-//less code would produce to first search for biggest number
 void	push_3(t_list **stack)
 {
-	t_list	*stack_1;
-	t_list	*stack_2;
-
-	stack_1 = (*stack)->next;
-	stack_2 = stack_1->next;
 	if (ft_lstsize(*stack) == 2)
 	{
 		if (check_biggest(*stack) == 1)
@@ -70,21 +64,11 @@ void	push_3(t_list **stack)
 	}
 	else if (ft_lstsize(*stack) == 3)
 	{
-		if (((*stack)->content > stack_1->content) && 
-			(stack_1->content > stack_2->content))
-		{
-			swap_a(stack);
-			revrotate_a(stack);
-		}
-		else if (stack_1->content > stack_2->content)
-		{
-			revrotate_a(stack);
-			stack_1 = (*stack)->next;
-		}
-		if (((*stack)->content > stack_1->content) && 
-			((*stack)->content > stack_2->content))
+		if (check_biggest(*stack) == 0)
 			rotate_a(stack);
-		else if ((*stack)->content > stack_1->content)
+		else if (check_biggest(*stack) == 1)
+			revrotate_a(stack);
+		if (check_smallest(*stack) != 0)
 			swap_a(stack);
 	}
 }

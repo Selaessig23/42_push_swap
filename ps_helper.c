@@ -53,4 +53,3 @@ void	ft_free_ll(t_list **ll)
 	}
 	curr = NULL;
 }
-

@@ -27,20 +27,20 @@ typedef struct s_list
 	struct s_list		*next;
 }	t_list;
 
-int	main(int argc, char **argv);
+//int	main(int argc, char **argv);
 //push_swap.c basic functions to build stack and allocate functions
-void	push_swap(t_list *stack_a);
+void		push_swap(t_list *stack_a);
 int	check_sorted(t_list *stack_a);
-void	push_3(t_list **stack);
-t_list	*create_stack_a(char **stack_char, size_t size);
+void		push_3(t_list **stack);
+t_list		*create_stack_a(char **stack_char, size_t size);
 int	intmaxcheck(t_list *stack_a, long long value);
 //ps_helper.c: helper functions
-void	ft_free(char **stack_char);
-void	ft_free_ll(t_list **ll);
-size_t	ft_arrlen(char **argv_temp2);
+void		ft_free(char **stack_char);
+void		ft_free_ll(t_list **ll);
+size_t		ft_arrlen(char **argv_temp2);
 //check of input arguments and input in /error_handling
 //arg_check.c: check if arguments are strings and or inte
-char	**clean_argv(char **argv, char **argv_cleaned);
+char		**clean_argv(char **argv, char **argv_cleaned);
 //input_check.c: check input in detail
 //static int		digit_check(char *str);
 int		input_errorcheck(char **stack_char);

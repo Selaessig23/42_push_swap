@@ -42,21 +42,21 @@ void	exe_operations_single(t_list **stack_current,
 	}
 }
 
-void	exe_operations_down(t_list **stack_current, t_list **stack_other, int num)
+void	exe_operations_down(t_list **stack_curr, t_list **stack_oth, int num)
 {
 	int	moves_curr;
 	int	moves_other;
 
-	moves_curr = calc_moves(stack_current, num);
-	moves_other = calc_moves(stack_other, find_target(stack_other, num));
+	moves_curr = calc_moves(stack_curr, num);
+	moves_other = calc_moves(stack_oth, find_target(stack_oth, num));
 	while (moves_curr != 0 && moves_other != 0)
 	{
-		revrotate_ab(stack_current, stack_other);
+		revrotate_ab(stack_curr, stack_oth);
 		moves_curr = moves_curr - 1;
 		moves_other = moves_other - 1;
 	}
 	if (moves_curr != 0 || moves_other != 0)
-		exe_operations_single(stack_current, stack_other, num);
+		exe_operations_single(stack_curr, stack_oth, num);
 }
 
 void	exe_operations_up(t_list **stack_current, t_list **stack_other, int num)

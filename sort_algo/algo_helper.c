@@ -40,15 +40,15 @@ int	check_smallest(t_list *stack)
 }
 
 //search the index of the biggest int
-int    check_biggest(t_list *stack)
+int	check_biggest(t_list *stack)
 {
-    t_list  *curr;
-    t_list  *big;
-    int i;
-    int j;
+	t_list	*curr;
+	t_list	*big;
+	int		i;
+	int		j;
 
 	big = stack;
-    	curr = big->next;
+	curr = big->next;
 	i = 0;
 	j = 1;
 	if (stack == NULL || (stack)->next == NULL)

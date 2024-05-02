@@ -36,9 +36,9 @@ SRCS =	main.c \
 		push_swap.c \
 		ps_helper.c \
 		sort_algo/sort_average.c \
-		cost_move.c \
-		cheapest_target.c \
-		cheapest_algo.c \
+		sort_algo/algo_helper.c \
+		sort_algo/cheapest_target.c \
+		sort_algo/cheapest_algo.c \
 		rules/rule_swap.c \
 		rules/rule_push.c \
 		rules/rule_rotate.c \

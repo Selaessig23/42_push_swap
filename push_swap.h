@@ -82,15 +82,11 @@ int	find_target(t_list **stack, int num);
 int	calc_moves(t_list **stack, int num);
 int	target_operations(t_list **stack_current, t_list **stack_other, int num, bool exe);
 int	find_cheapest(t_list **stack_a, t_list **stack_b);
-//
-int		intmaxcheck(t_list *stack_a, long long value);
-//int		intmaxcheck(int *stack_a, long long value);
-
-//cost_move.c sorting algortithms helper functions
+//algo_helper.c sorting algortithms helper functions
 int    check_smallest(t_list *stack);
 int    check_biggest(t_list *stack);
-void	sort_clean_a(t_list **stack_a);
-void	sort_to_a(t_list **stack_a, t_list **stack_b);
+//void	sort_clean_a(t_list **stack_a);
+//void	sort_to_a(t_list **stack_a, t_list **stack_b);
 
 //libft_bonus functions in /libft_bonus
 t_list	*ft_lstnew(int content);

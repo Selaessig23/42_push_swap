@@ -44,6 +44,8 @@ void	ft_free_ll(t_list **ll)
 	t_list	*temp;
 	t_list	*curr;
 
+	if (!ll)
+		return ;
 	curr = *ll;
 	while (curr != NULL)
 	{

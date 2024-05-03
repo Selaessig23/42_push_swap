@@ -16,12 +16,13 @@
 #include "push_swap.h"
 
 //check some arguments are bigger than an integer and free the linked list
+//perror("Error: MAX or MIN INT");
 int	intmaxcheck(t_list *stack_a, long long value)
 {
-	if (value > INT_MAX || value < INT_MIN)
+	if (value > 2147483647 || value < -2147483648)
 	{
 		ft_free_ll(&stack_a);
-		perror("Error: MAX or MIN INT");
+		write(2, "Error\n", 7);
 		return (1);
 	}
 	return (0);
@@ -59,7 +60,7 @@ void	push_3(t_list **stack)
 {
 	if (ft_lstsize(*stack) == 2)
 	{
-		if (check_biggest(*stack) == 1)
+		if (check_biggest(*stack) == 0)
 			swap_a(stack);
 	}
 	else if (ft_lstsize(*stack) == 3)
@@ -95,6 +96,8 @@ void	push_swap(t_list *stack_a)
 	int		i;
 
 	stack_b = NULL;
+	if (stack_a == NULL)
+		return ;
 	i = ft_lstsize(stack_a);
 	if (check_sorted(stack_a) == 0)
 	{

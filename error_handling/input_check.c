@@ -30,6 +30,7 @@ static int	digit_check(char *str)
 
 //error check for faulty input_creation (of ft_split or clean_argv)
 //and error check of wrong input (if not integer)
+//perror("Error1A: only digits\n");
 int	input_errorcheck(char **stack_char)
 {
 	int	i;
@@ -47,7 +48,7 @@ int	input_errorcheck(char **stack_char)
 		if (digit_check(stack_char[i]) == 1)
 		{
 			ft_free(stack_char);
-			perror("Error1A: only digits\n");
+			write(2, "Error\n", 7);
 			return (1);
 		}
 		i++;
@@ -55,7 +56,9 @@ int	input_errorcheck(char **stack_char)
 	return (0);
 }
 
-	//error_check amount of arguments
+/*
+//error_check amount of arguments
+//perror("Error4: Please insert minimum 2 arguments");
 int	check_noarg(char **stack_char)
 {
 	int	i;
@@ -71,8 +74,9 @@ int	check_noarg(char **stack_char)
 	}
 	return (0);
 }
-
-	//error_check duplicates within a linked list
+*/
+//error_check duplicates within a linked list
+//perror("Error1: Duplicates within arguments");
 int	check_dupli(t_list **stack_a)
 {
 	t_list	*add;
@@ -87,7 +91,7 @@ int	check_dupli(t_list **stack_a)
 		if (add != NULL && curr->content == add->content)
 		{
 			ft_free_ll(stack_a);
-			perror("Error1: Duplicates within arguments");
+			write(2, "Error\n", 7);
 			return (1);
 		}
 		curr = curr->next;
@@ -95,8 +99,9 @@ int	check_dupli(t_list **stack_a)
 	return (0);
 }
 
-	//error_check for double signs
-	//created *temp to make it more readable
+//error_check for double signs
+//created *temp to make it more readable
+//perror("Error1: too many signs");
 int	check_signs(char **stack_char)
 {
 	char	*temp;
@@ -118,7 +123,7 @@ int	check_signs(char **stack_char)
 		if (i > 1)
 		{
 			ft_free(stack_char);
-			perror("Error1: too many signs");
+			write(2, "Error\n", 7);
 			return (1);
 		}
 		j++;

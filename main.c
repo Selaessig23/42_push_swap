@@ -13,8 +13,10 @@
 #include "push_swap.h"
 //delete the error message and return (0) if no parameters 
 //are specified (according to subject)
-//do I have to integrate read when argc == 0?
-
+//perror("Error3: too less arguments\n: Change to return (0) "
+//"and delete error message before closing the project");
+//	if (check_noarg(stack_char) != 0)
+//		return (1);
 int	main(int argc, char **argv)
 {
 	char	**stack_char;
@@ -27,18 +29,12 @@ int	main(int argc, char **argv)
 	else if (argc > 2)
 		stack_char = clean_argv(argv, ft_calloc(1, sizeof(char *)));
 	else
-	{
-		perror("Error3: too less arguments\n: Change to return (0) "
-			"and delete error message before closing the project");
-		return (1);
-	}
-	if (check_noarg(stack_char) != 0)
-		return (1);
+		return (0);
 	if (input_errorcheck(stack_char) == 1 || check_signs(stack_char) == 1)
 		return (1);
 	size = ft_arrlen(stack_char);
 	stack_a = create_stack_a(stack_char, size);
-	if (check_dupli(&stack_a) == 1)
+	if (stack_a == NULL || check_dupli(&stack_a) == 1)
 		return (1);
 	push_swap(stack_a);
 	return (0);

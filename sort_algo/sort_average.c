@@ -16,7 +16,7 @@
 float	count_average(t_list *stack)
 {
 	t_list	*curr;
-	int		i;
+	size_t	i;
 
 	i = 0;
 	curr = stack;

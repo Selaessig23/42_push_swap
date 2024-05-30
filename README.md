@@ -1,5 +1,7 @@
 ## push_swap
 This project is part of the 42 curriculum and was submitted in 42-berlin. The maximum number of points was achieved in the efficiency tests (100 / 500 random numbers). The bonus part was not processed. 
+The sorting algorithm is based on a mix of my own thoughts & improvements and the thoughts of the so-called "Turk Algorithm" (https://medium.com/@ayogun/push-swap-c1f5d2d41e97). 
+Instead of defining several variables within the linked list I tried to handle all the required calculations "in time". Hence, the linked list, I worked with is very easy and does only consists of two variables (value / next). Does this maybe save some memory space without requiring more processors capacity? I hope so and will make research on that issues in future. 
 
 General project instructions
 - You have to turn in a Makefile which will compile your source files. It must not relink.
@@ -30,3 +32,17 @@ The rules
   - rra (reverse rotate a): Shift down all elements of stack a by 1. The last element becomes the first one.
   - rrb (reverse rotate b): Shift down all elements of stack b by 1. The last element becomes the first one.
   - rrr : rra and rrb at the same time.
+ 
+<br>
+
+Additional work
+  - the program is able to handle input if strings and ints are mixed, e. g. 
+  $>./push_swap "1 2 4 3" 76 90 "348 05" 55
+
+<br>
+
+Known bugs
+- there is a bug with input
+  $>./push_swap “” - 1 4
+  as "" will be handeled as "0".
+  I have already uploaded a fixed version (arg_check_fixed.c), which has to be tested more seriously. 

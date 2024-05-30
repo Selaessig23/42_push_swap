@@ -1,6 +1,7 @@
-## Project instructions
+## push_swap
+This project is part of the 42 curriculum and was submitted in 42-berlin. The maximum number of points was achieved in the efficiency tests (100 / 500 random numbers). The bonus part was not processed. 
 
-Your project must comply with the following rules:
+General project instructions
 - You have to turn in a Makefile which will compile your source files. It must not relink.
 - Global variables are forbidden.
 - You have to write a program named push_swap that takes as an argument the stack a formatted as a list of integers. The first argument should be at the top of the stack (be careful about the order).
